@@ -11,21 +11,57 @@
 <body onload="onInit()">
     <h1>Country </h1>
     <section>
-        <input type="text" class="country-input" placeholder="Enter country name">
-        <button class="fetch-btn">Get Country Info</button>
+        <form class="country-form" onsubmit="fetchCountry(event)">
+            <input type="text" class="country-input" placeholder="Enter country name" required>
+            <button type="submit" class="fetch-btn">Get Country Info</button>
+            <button type="button" class="clear-countryMap-btn" onclick="clearCountryMap()">Clear countryMap</button>
+        </form>
         <div class="country-info">
             <h2 class="country-name"></h2>
-           <img class="country-flag" alt="Country Flag" />
-            <p class="country-population"></p>
-            <p class="country-area"></p>
+            
+            <img class="country-flag" alt="Country Flag" />
+            <div class="left-side">
+                <p class="country-population"></p>
+                <p class="country-area"></p>
+                <p class="country-neighbors"></p>
+            </div>
         </div>
     </section>
 
+    <svg class="loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="display:none;">
+        <!-- Hide by default -->
+        <circle fill="#FF156D" stroke="#FF156D" stroke-width="15" r="15" cx="40" cy="65">
+            <animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1"
+                repeatCount="indefinite" begin="-.4"></animate>
+        </circle>
+        <circle fill="#FF156D" stroke="#FF156D" stroke-width="15" r="15" cx="100" cy="65">
+            <animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1"
+                repeatCount="indefinite" begin="-.2"></animate>
+        </circle>
+        <circle fill="#FF156D" stroke="#FF156D" stroke-width="15" r="15" cx="160" cy="65">
+            <animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1"
+                repeatCount="indefinite" begin="0"></animate>
+        </circle>
+    </svg>
+
+
+    <div class="overlay"></div>
+
+    <div id="changeThemeModal" class="modal">
+        <p>Select a background color:</p>
+        <canvas id="colorPickerCanvas" width="250" height="250"></canvas>
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+            <button class="btn-no-clean" onclick="applyThemeColor()">OK</button>
+            <button class="btn-clean" onclick="hideChangeThemeModal()">Cancel</button>
+        </div>
+    </div>
+    <button class="change-theme-button" onclick="showChangeThemeModal()">Change Theme</button>
+
     <div class="user-msg"></div>
     <script src="lib/axios.js"></script>
-    <script src="service/localstorage.js"></script>
-    <script src="service/service.js"></script>
-    <script src="controlller.js"></script>
+    <script src="service/country.localstorage.js"></script>
+    <script src="service/country.service.js"></script>
+    <script src="country.controlller.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "countries",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "countries",
+		"liveServer.settings.port": 5501
+	}
+}
