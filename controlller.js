@@ -2,7 +2,9 @@
 
 function onInit() {
     document.querySelector('.fetch-btn').addEventListener('click', fetchCountry)
+    document.querySelector('.clear-cache-btn').addEventListener('click', clearCache)
 }
+
 
 function fetchCountry() {
 
@@ -47,4 +49,9 @@ function flashMsg(msg) {
     el.innerText = msg
     el.classList.add('open')
     setTimeout(() => el.classList.remove('open'), 3000)
+}
+
+function clearCache() {
+    localStorage.removeItem('countryCache')
+    flashMsg('Cache cleared successfully!')
 }
